@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     axiosHandle () {
-      // 直接 this.$axioe() 使用
+      // 直接 this.$axios() 使用
       this.$axios({
         method: 'get',
         url: 'http://httpbin.org/get',
@@ -29,7 +29,7 @@ export default {
         console.log('...About.vue...mounted()...res.data -> ', res.data) // 这个本身就是对象了
         // 直接 this.$message 使用 Ant Design Vue 全局提示 Message
         this.$message.success(JSON.stringify(res.data), 3, () => {
-          console.log('...About.vue...我显示了 res.data ,关闭时触发的回调函数...触发了我...')
+          console.log('...About.vue...我显示了 res.data ,关闭时触发的回调函数...触发了我...') 
         }).then(() => this.$message.success('Loading finished', 5, function () {
           console.log('...About.vue...我显示了 Loading finished ,关闭时触发的回调函数...触发了我...未使用箭头函数...')
         })).then(() => this.$message.info('Loading finished is finished', 7, () => {

@@ -17,6 +17,7 @@
     <a-list bordered :dataSource="infoList" class="dt_list">
       <a-list-item slot="renderItem" slot-scope="item">
         <!-- 复选框 -->
+        <!--给vue组件绑定事件时候，必须加上native ，否则会认为监听的是来自Item组件自定义的事件-->
         <a-checkbox :checked='item.done' @click.native="changeDoneById(item.id)">{{item.info}}</a-checkbox>
         <!-- 删除链接 -->
         <a slot="actions" @click="removeItemById(item.id)">删除</a>
@@ -27,6 +28,7 @@
         <!-- 未完成的任务个数 -->
         <span>{{unDoneLength}}条剩余待做</span>
         <!-- 操作按钮 -->
+        <!--三元表达式：例如第一项：判断viewKey的值是否等于all,若等于all让type=primary,或者type为默认值-->
         <a-button-group>
           <a-button @click="ChangeList('all')" :type="viewKey === 'all' ? 'primary' : ''">全部</a-button>
           <a-button @click="ChangeList('undone')" :type="viewKey === 'undone' ? 'primary' : ''">未完成</a-button>
@@ -83,6 +85,7 @@ import { mapGetters, mapState } from 'vuex'
 export default {
   name: 'Todos',
   created () {
+    //在created阶段调用axios函数
     console.log('...created...')
     this.$store.dispatch('getList')
   },
@@ -110,16 +113,18 @@ export default {
   //   ...mapGetters(['unDoneLength', 'infoList'])
   // },
 
-  // computed 处理 State 和 Getters
+  // computed 处理 State 和 Getters 省略了this.$store
   // 第二种写法
   computed: {
     ...mapState({
+      //list: (state) => state.todos.list,
       list: (state) => state.todos.list,
       inputValue: (state) => state.todos.inputValue,
+      //button按钮在全部、未完成、已完成直接进行切换
       viewKey: state => state.todos.viewKey,
       // 下面这些无用 只是写法演示使用
       // 当映射的计算属性的名称与 state 的子节点名称相同时 也就是 state.count 直接可以找到 可以赋值 名称 字符串
-      count: 'count', // {{ this.$store.state.count}} 和 {{count}} 均可了,这里 传字符串参数 'count' 等同于 `state => state.count`
+      count: 'count', // {{ this.$store.state.count}} 和 {{count}} 均可,这里 传字符串参数 'count' 等同于 `state => state.count`
       count2: (state) => state.count, // 使用箭头函数 箭头函数可使代码更简练 【count2: state => state.count】也可
       count3 (state) { // 为了能够使用 `this` 获取局部状态，必须使用常规函数
         return state.count
@@ -141,6 +146,8 @@ export default {
     }
   },
   methods: {
+    //获得该输入框的DOM元素，然后获得其对应的属性值
+    //e=$event
     handlInputChange (e) {
       this.$store.commit('setInputValue', e.target.value)
     },
@@ -152,7 +159,7 @@ export default {
       if (this.inputValue.trim().length <= 0) {
         return this.$notification.open({
           message: '文本框内容不能为空！',
-          type: 'warning'
+          type: 'error',
         })
       }
       this.$store.commit('addItem')

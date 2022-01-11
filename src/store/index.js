@@ -42,11 +42,11 @@ export default new Vuex.Store({
   // actions 用于处理异步任务
   actions: {
     // 异步+1
-    addAsync (context) {
+    addAsync ({commit}) {
       // 变更状态
       // +1
       setTimeout(() => {
-        context.commit('add')
+        commit('add')
       }, 1000)
     },
     // 异步+n
@@ -81,7 +81,7 @@ export default new Vuex.Store({
   getters: {
     showNum: state => {
       return '当前最新的数量是【' + state.count + '】'
-    }
+    },
   },
   modules: {
     todos: todos // 将todos加入 modules

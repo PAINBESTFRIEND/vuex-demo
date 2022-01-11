@@ -1,5 +1,5 @@
 module.exports = {
-  lintOnSave: true, // 为false的话就是关闭ESLINT校验 eslint-loader 是否在保存的时候检查
+  lintOnSave: false, // 为false的话就是关闭ESLINT校验 eslint-loader 是否在保存的时候检查
   devServer: {
     // 这里可以修改项目启动端口 注意本地开发环境 使用localhost时 这边修改了端口 src/utils/axios.js:3 这里也要修改成对应端口
     // 这样操作的话 就不需要自己在本地环境中将 网易云音乐api接口项目【https://github.com/Binaryify/NeteaseCloudMusicApi】举起来了
