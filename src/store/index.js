@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 // 引入todos的 state，mutations，actions，getter
 // 引入分离出去的module 添加到 modules
 import todos from './mod-todos'
+import todosDemo from './mod-todos-demo'
 
 Vue.use(Vuex)
 
@@ -84,6 +85,7 @@ export default new Vuex.Store({
     },
   },
   modules: {
-    todos: todos // 将todos加入 modules
+    todos: todos, // 将todos加入 modules
+    todosDemo: todosDemo
   }
 })

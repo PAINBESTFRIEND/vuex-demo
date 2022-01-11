@@ -8,6 +8,8 @@
       <router-link to="/counter">Counter</router-link>
       |
       <router-link to="/todos">Todos</router-link>
+      |
+      <router-link to="/todos-demo">Todos-demo</router-link>
     </div>
     <router-view/>
   </div>

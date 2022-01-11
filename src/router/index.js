@@ -25,9 +25,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Counter.vue')
   },
   {
-    path: '/todos', // 计数器案例页面
+    path: '/todos', // 购物车案例页面
     name: 'Todos',
     component: () => import(/* webpackChunkName: "about" */ '../views/Todos.vue')
+  },
+  {
+    path: '/todos-demo',//购物车案例再敲一次
+    name: 'Todos-demo',
+    component: () =>import('../views/Todos-demo')
   }
 ]
 
